@@ -1,0 +1,25 @@
+Q8. In what order will the numbers 1-4 be logged to the console when the code below is executed? Why?
+
+(function() {
+
+    console.log(1); 
+
+    setTimeout(function(){console.log(2)}, 1000); 
+
+    setTimeout(function(){console.log(3)}, 0); 
+
+    console.log(4);
+
+})();
+
+Solution:- The numbers 1, 4, 3, and 2 will be logged to the console in the following order:
+
+1. `console.log(1);`: This line logs the number 1 to the console immediately when the script is executed.
+
+2. `console.log(4);`: This line logs the number 4 to the console immediately after the first log (1) because it is a synchronous operation.
+
+3. `setTimeout(function(){console.log(3)}, 0);`: This line schedules the function `console.log(3)` to be executed after 0 milliseconds. Despite the delay being 0, it is still an asynchronous operation. Asynchronous tasks are executed after the synchronous code has finished executing. Therefore, the number 3 is logged to the console after 1 and 4.
+
+4. `setTimeout(function(){console.log(2)}, 1000);`: This line schedules the function `console.log(2)` to be executed after 1000 milliseconds (1 second). Since this is also an asynchronous operation and there is a delay of 1000 milliseconds, the number 2 is logged last, after 1, 4, and 3.
+
+So, the final order of the numbers logged to the console will be: 1, 4, 3, and 2.

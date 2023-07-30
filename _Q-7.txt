@@ -1,0 +1,12 @@
+Q7. Use Array.reduce() method to reverse the following given array
+
+const arr = [1, 2, 3, 4, 5]
+
+Solution: 
+const arr = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+
+const reversedArr = arr.reduce((reversed, current) => {
+  return [current, ...reversed];
+}, []);
+
+console.log(reversedArr); // Output: [100, 90, 80, 70, 60, 50, 40, 30, 20, 10]

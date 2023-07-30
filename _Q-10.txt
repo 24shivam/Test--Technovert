@@ -1,0 +1,47 @@
+Ques 10: What will the following code's output be in sequence and explain why?
+function printNumber(num) {
+
+  console.log(num);
+
+}
+
+
+console.log(1);
+
+
+setTimeout(printNumber, 0, 2);
+
+
+setTimeout(printNumber, 100, 3);
+
+
+console.log(4);
+
+
+
+Solution:
+
+The output sequence of the code will be as follows:
+
+```
+1
+4
+2
+3
+```
+
+Explanation:
+
+1. `console.log(1);`: This line logs the number 1 to the console immediately when the script starts executing.
+
+2. `console.log(4);`: This line logs the number 4 to the console after the first log (1) because it is a synchronous operation.
+
+3. `setTimeout(printNumber, 0, 2);`: This line schedules the function `printNumber` to be executed with the argument `2` after 0 milliseconds. Despite the delay being 0, it is still an asynchronous operation. However, since the delay is 0, the `printNumber` function with the argument `2` is added to the microtask queue (job queue) immediately after the current synchronous execution context finishes.
+
+4. `setTimeout(printNumber, 100, 3);`: This line schedules the function `printNumber` to be executed with the argument `3` after 100 milliseconds. As this is also an asynchronous operation with a delay of 100 milliseconds, the `printNumber` function with the argument `3` is added to the macro task queue (timer queue).
+
+After the synchronous code execution is finished, the event loop moves to the next phase, where it checks the microtask queue first. In this case, it finds the `printNumber` function with the argument `2` waiting in the microtask queue and logs the number 2 to the console. Now the microtask queue is empty.
+
+Next, the event loop checks the macro task queue. It finds the `printNumber` function with the argument `3` waiting there and logs the number 3 to the console. After that, the macro task queue is empty.
+
+Thus, the final output sequence is: 1, 4, 2, 3.
